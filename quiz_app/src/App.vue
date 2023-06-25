@@ -2,24 +2,34 @@
   <div class="container">
     <header>
       <h1>Quizzes</h1>
-      <input type="text" placeholder="Search..." />
+      <input v-model.trim="search" type="text" placeholder="Search..." />
     </header>
     <div class="options-container">
-      <div class="card">
-        <img
-          src="https://s1.qwant.com/thumbr/0x380/1/0/0191f59a21fe103f7c846c1a94aaaf7993c3eb0be804e8585cf8fa98697a48/3Lwnjz.jpg?u=http%3A%2F%2Fcdn.wallpapersafari.com%2F47%2F95%2F3Lwnjz.jpg&q=0&b=1&p=0&a=0"
-          alt=""
-        />
+      <Card v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" />
+      <!-- <div v-for="quiz in quizzes" :key="quiz.id" class="card">
+        <img :src="quiz.img" alt="" />
         <div class="card-text">
-          <h2>Math</h2>
-          <p>12 questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{ quiz.questions.length }}</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script setup>
+import q from "./data/quizzes.json";
+import { ref, watch } from "vue";
+import Card from "./components/Card.vue";
+
+const quizzes = ref(q);
+const search = ref("");
+
+watch(search, () => {
+  quizzes.value = q.filter((quiz) => {
+    return quiz.name.toLowerCase().includes(search.value.toLowerCase());
+  });
+});
 </script>
 
 <style scoped>
@@ -47,9 +57,9 @@ header input {
   border-radius: 5px;
 }
 
-.options-container{
+.options-container {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-top: 40px;
 }
 
