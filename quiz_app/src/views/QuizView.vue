@@ -10,6 +10,7 @@
         :question="quiz.questions[currentQuestionIndex]"
         @selectOption="onOptionSelected"
       />
+
       <result
         v-else
         :quizQuestionLength="quiz.questions.length"
@@ -57,7 +58,8 @@ const onOptionSelected = (isCorrect) => {
     numberOfCorrectAnswers.value++;
   }
 
-  if (quiz.questions.length - 1 === currentQuestionIndex.value);
+  if (quiz.questions.length - 1 === currentQuestionIndex.value)
+    showResults.value = true;
 
   currentQuestionIndex.value++;
 };
