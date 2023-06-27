@@ -50,7 +50,7 @@ const questionStatus = computed(() => {
   return `${currentQuestionIndex.value}/${quiz.questions.length}`;
 });
 const barParentage = computed(
-  () => `${(currentQuestionIndex.value / quiz.questions.length) * 100}`
+  () => `${(currentQuestionIndex.value / quiz.questions.length) * 100}%`
 );
 
 const onOptionSelected = (isCorrect) => {

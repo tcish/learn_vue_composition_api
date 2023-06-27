@@ -1,8 +1,8 @@
 <template>
   <header>
-    <h4>question {{ questionStatus }}</h4>
+    <h4>Question {{ questionStatus }}</h4>
     <div class="bar">
-      <div class="completion" :style="{ width: barPercentage }"></div>
+      <div class="completion" :style="{ width: barParentage }"></div>
     </div>
   </header>
 </template>
@@ -10,9 +10,9 @@
 <script setup>
 import { defineProps } from "vue";
 
-const { questionStatus, barPercentage } = defineProps([
+const { questionStatus, barParentage } = defineProps([
   "questionStatus",
-  "barPercentage",
+  "barParentage",
 ]);
 </script>
 
