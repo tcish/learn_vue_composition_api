@@ -1,39 +1,33 @@
 <template>
   <div>
     <div class="question_container">
-      <h1 class="question">question will go here</h1>
+      <h1 class="question">{{ question.text }}</h1>
     </div>
     <div class="options_container">
-      <div class="option">
-        <p class="option_label">A</p>
+      <div
+        class="option"
+        v-for="option in question.options"
+        :key="option.id"
+        @click="emitSelectedOption(option.isCorrect)"
+      >
+        <p class="option_label">{{ option.label }}</p>
         <div class="option_value">
-          <p>NaCl</p>
-        </div>
-      </div>
-      <div class="option">
-        <p class="option_label">B</p>
-        <div class="option_value">
-          <p>NaCl</p>
-        </div>
-      </div>
-      <div class="option">
-        <p class="option_label">C</p>
-        <div class="option_value">
-          <p>NaCl</p>
-        </div>
-      </div>
-      <div class="option">
-        <p class="option_label">D</p>
-        <div class="option_value">
-          <p>NaCl</p>
+          <p>{{ option.text }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { defineProps, defineEmits } from "vue";
+
+const emit = defineEmits(["selectOption"]);
+const { question } = defineProps(["question"]);
+
+const emitSelectedOption = (isCorrect) => {
+  emit("selectOption", isCorrect);
+};
 </script>
 
 <style scoped>
