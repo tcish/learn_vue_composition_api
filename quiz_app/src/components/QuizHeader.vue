@@ -1,0 +1,33 @@
+<template>
+  <header>
+    <h4>question 1/3</h4>
+    <div class="bar">
+      <div class="completion"></div>
+    </div>
+  </header>
+</template>
+
+<script setup>
+</script>
+
+<style scoped>
+header {
+  margin-top: 20px;
+}
+
+header h4 {
+  font-size: 30px;
+}
+
+.bar {
+  width: 300px;
+  height: 50px;
+  border: 3px solid bisque;
+}
+
+.completion {
+  height: 100%;
+  width: 0%;
+  background: bisque;
+}
+</style>

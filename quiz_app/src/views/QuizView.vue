@@ -1,13 +1,16 @@
 <template>
-  <h1>hola</h1>
+  <div>
+    <quiz-header />
+    <div>
+      <question />
+    </div>
+  </div>
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+import Question from "../components/Question.vue";
+import QuizHeader from "../components/QuizHeader.vue";
 </script>
 
-<style>
-
+<style scoped>
 </style>
