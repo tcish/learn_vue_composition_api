@@ -49,7 +49,10 @@
           <button class="btn-icon btn-icon-success" @click="onEdit(item.id)">
             <i class="fas fa-pencil-alt"></i>
           </button>
-          <button class="btn-icon btn-icon-danger">
+          <button
+            class="btn-icon btn-icon-danger"
+            @click="deleteProduct(item.id)"
+          >
             <i class="far fa-trash-alt"></i>
           </button>
         </div>
@@ -85,6 +88,31 @@ const newProduct = () => {
 
 const onEdit = (id) => {
   router.push("/product/edit/" + id);
+};
+
+const deleteProduct = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You can't go back",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    confirmButtonText: "Yes delete it!",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "Cancel",
+  }).then((result) => {
+    if (result.value) {
+      axios
+        .delete(`/api/delete_product/${id}`)
+        .then(() => {
+          Swal.fire("Delete", "Product delete successfully", "success");
+          getProducts();
+        })
+        .catch((error) => {
+          Swal.fire("Failed!", "There was something wrong.", "warning");
+        });
+    }
+  });
 };
 
 onMounted(async () => {
