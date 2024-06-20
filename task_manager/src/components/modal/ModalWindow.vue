@@ -1,7 +1,7 @@
 <template>
   <div class="modal-wrapper" aria-modal="true" role="dialog" tabindex="-1">
     <div class="inner">
-      <ModalCloseButton @click="$emit('closePopup')" />
+      <ModalCloseButton @click="store.closeModal" />
       <slot></slot>
     </div>
   </div>
@@ -9,6 +9,8 @@
 
 <script setup>
 import ModalCloseButton from "../modal/ModalCloseButton.vue";
+import { useTasksStore } from "@/stores/tasksStore.js";
+const store = useTasksStore();
 </script>
 
 <style lang="scss" scoped>

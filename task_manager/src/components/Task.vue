@@ -8,7 +8,7 @@
       <input
         type="checkbox"
         :checked="task.completed"
-        @click="$emit('toggleCompleted', task.id)"
+        @click="store.toggleCompleted(task.id)"
       />
       <label> {{ task.completed ? "Done" : "To-Do" }} </label>
     </div>
@@ -17,6 +17,8 @@
 
 <script setup>
 const props = defineProps(["task"]);
+import { useTasksStore } from "@/stores/tasksStore.js";
+const store = useTasksStore();
 </script>
 
 <style lang="scss" scoped>
